@@ -2,7 +2,7 @@ import { bookService } from "../services/book.service.js"
 
 const { useEffect, useState } = React
 
-export function BookDetails({ bookId }) {
+export function BookDetails({ bookId, onBack }) {
     const [book, setBook] = useState(null)
     useEffect(() => {
         bookService.get(bookId)
@@ -16,6 +16,7 @@ export function BookDetails({ bookId }) {
             <h1>Title: {book.title}</h1>
             <h1>Price: {book.listPrice}₪</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, omnis molestias fuga aliquid minus sit iste blanditiis, dignissimos natus saepe sunt, rem nulla repudiandae exercitationem. Totam dolor quae incidunt ipsum!</p>
+            <button onClick={onBack}>back</button>
         </section>
     )
 }
