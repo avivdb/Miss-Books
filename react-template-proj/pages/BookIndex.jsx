@@ -1,11 +1,13 @@
 import { BookList } from "../cmps/BookList.jsx"
 import { bookService } from "../services/book.service.js"
+import { BookDetails } from "./BookDetails.jsx"
 
 const { useEffect, useState } = React
 
 export function BookIndex() {
 
     const [books, setBooks] = useState(null)
+    const [selectedBook, setSelectedBook] = useState(null)
 
     useEffect(() => {
         bookService.query()
@@ -20,11 +22,25 @@ export function BookIndex() {
 
     }
 
+    function onSelectBook(bookId) {
+        setSelectedBook(bookId)
+
+    }
+
     if (!books) return <div>Loading...</div>
     return (
         <section className="book-index">
-            <h1>Book Index</h1>
-            <BookList books={books} onRemoveBook={onRemoveBook} />
+            {
+                !selectedBook &&
+                <React.Fragment>
+                    <h1>Book Index</h1>
+                    <BookList
+                        books={books}
+                        onRemoveBook={onRemoveBook}
+                        onSelectBook={onSelectBook} />
+                </React.Fragment>
+            }
+            {selectedBook && < BookDetails bookId={selectedBook} />}
         </section>
     )
 
