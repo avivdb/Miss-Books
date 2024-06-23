@@ -11,7 +11,7 @@ export const bookService = {
     remove,
     save,
     getEmptyBook,
-    getNextCarId,
+    getNextBookId,
     getFilterBy,
     setFilterBy
 }
@@ -30,12 +30,12 @@ function query() {
         })
 }
 
-function get(carId) {
-    return storageService.get(BOOK_KEY, carId)
+function get(bookId) {
+    return storageService.get(BOOK_KEY, bookId)
 }
 
-function remove(carId) {
-    return storageService.remove(BOOK_KEY, carId)
+function remove(bookId) {
+    return storageService.remove(BOOK_KEY, bookId)
 }
 
 function save(book) {
@@ -60,12 +60,12 @@ function setFilterBy(filterBy = {}) {
     return gFilterBy
 }
 
-function getNextCarId(carId) {
+function getNextBookId(bookId) {
     return storageService.query(BOOK_KEY)
         .then(books => {
-            let nextCarIdx = books.findIndex(book => book.id === carId) + 1
-            if (nextCarIdx === books.length) nextCarIdx = 0
-            return books[nextCarIdx].id
+            let nextBookIdx = books.findIndex(book => book.id === bookId) + 1
+            if (nextBookIdx === books.length) nextBookIdx = 0
+            return books[nextBookIdx].id
         })
 }
 

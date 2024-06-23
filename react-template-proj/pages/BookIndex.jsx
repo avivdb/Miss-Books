@@ -12,11 +12,19 @@ export function BookIndex() {
             .then(books => setBooks(books))
             .catch(err => console.log(err))
     }, [])
+
+    function onRemoveBook(bookId) {
+        bookService.remove(bookId)
+            .then(() => setBooks(books => books.filter(book => book.id !== bookId)))
+            .catch(err => console.log('err', err))
+
+    }
+
     if (!books) return <div>Loading...</div>
     return (
         <section className="book-index">
             <h1>Book Index</h1>
-            <BookList books={books} />
+            <BookList books={books} onRemoveBook={onRemoveBook} />
         </section>
     )
 
