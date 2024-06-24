@@ -442,3 +442,5 @@ const books = [
     }
   }
 ]
+
+export const Books = { books }

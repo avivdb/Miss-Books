@@ -2,7 +2,7 @@ import { BookFilter } from "../cmps/BookFilter.jsx"
 import { BookList } from "../cmps/BookList.jsx"
 import { bookService } from "../services/book.service.js"
 import { BookDetails } from "./BookDetails.jsx"
-
+import { Books } from "../../books.js"
 const { useEffect, useState } = React
 
 export function BookIndex() {
@@ -10,7 +10,9 @@ export function BookIndex() {
     const [books, setBooks] = useState(null)
     const [selectedBook, setSelectedBook] = useState(null)
     const [filterBy, setFilterBy] = useState(bookService.getFilterBy)
-
+    // useEffect(() => {
+    //     setBooks(Books.books)
+    // }, [])
     useEffect(() => {
         loadBooks()
     }, [filterBy])

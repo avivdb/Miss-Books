@@ -13,9 +13,19 @@ export function BookDetails({ bookId, onBack }) {
     if (!book) return <div>Loading...</div>
     return (
         <section className="book-details">
-            <h1>Title: {book.title}</h1>
-            <h1>Price: {book.listPrice}₪</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, omnis molestias fuga aliquid minus sit iste blanditiis, dignissimos natus saepe sunt, rem nulla repudiandae exercitationem. Totam dolor quae incidunt ipsum!</p>
+            <h1>{book.title}</h1>
+            <h2>{book.subtitle}</h2>
+            <h3>Authors: {book.authors.toString()}</h3>
+            <h3>Publish Date: {book.publishedDate}</h3>
+            <h3>Price: {book.listPrice.amount}₪</h3>
+            <h3>Page Count: {book.pageCount}</h3>
+            <h3>Catagories: {book.categories.toString()}</h3>
+            <h3>Language: {book.language}</h3>
+            <p>{book.description}</p>
+            <img src={book.thumbnail} alt="" />
+            {book.listPrice.isOnSale && <div>ON SALE!!!</div>}
+
+
             <button onClick={onBack}>back</button>
         </section>
     )
